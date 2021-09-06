@@ -11,6 +11,7 @@ version = "0.1"
 group = "com.example.demo"
 
 val kotlinVersion=project.properties.get("kotlinVersion")
+
 repositories {
     mavenCentral()
 }
@@ -36,25 +37,26 @@ dependencies {
     implementation("javax.annotation:javax.annotation-api")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
+    implementation("io.micronaut:micronaut-validation")
+
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("org.postgresql:postgresql")
+    runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
+
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("org.testcontainers:postgresql")
     testImplementation("org.testcontainers:testcontainers")
-    implementation("io.micronaut:micronaut-validation")
-
-    runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
-
     testImplementation("org.hamcrest:hamcrest")
-
     testImplementation("org.mockito:mockito-core")
-
+    testImplementation("io.rest-assured:rest-assured:4.4.0")
+    testRuntimeOnly("com.h2database:h2")
 }
 
 
 application {
     mainClass.set("com.example.demo.ApplicationKt")
 }
+
 java {
     sourceCompatibility = JavaVersion.toVersion("11")
 }
@@ -70,6 +72,4 @@ tasks {
             jvmTarget = "11"
         }
     }
-
-
 }
