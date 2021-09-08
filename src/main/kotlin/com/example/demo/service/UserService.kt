@@ -19,11 +19,11 @@ class UserService(private val repository: UserRepository) {
 
     /**
      * see https://github.com/marlon360/rki-covid-api
+     * URL https://rki.marlon-lueckert.de/api/states
      */
     fun requestRki() {
         val httpClient = HttpClient.create(URL("https://rki.marlon-lueckert.de")).toBlocking()
         val result = httpClient.retrieve(HttpRequest.GET<String>("/api/states"), String::class.java)
-//        val result = restTemplate.getForObject("https://rki.marlon-lueckert.de/api/states", String::class.java)
         logger.info(result)
     }
 }
